@@ -1,5 +1,9 @@
 'use server'
 
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
 export const loginAction = async (state: { success: boolean, message: string }, formData: FormData) => {
 
     const email = formData.get('email');
@@ -27,10 +31,56 @@ export const loginAction = async (state: { success: boolean, message: string }, 
         };
     }
 
+    const cookieStore = await cookies();
+
+    // setting accessToken in browser cookies
+    cookieStore.set("accessToken", result.data.accessToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: "/"
+    })
+
+    // setting refreshToken in browser cookies
+    cookieStore.set('refreshToken', result.data.refreshToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: 'lax',
+        path: '/'
+    })
+
+    const user = await getCurrentUser();
+
+    if (!user) {
+        return {
+            success: false,
+            message: "User not found"
+        };
+    }
+
+    cookieStore.set("userRole", user.role, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: '/'
+    })
+
+    if (user.role === "ADMIN") {
+        redirect('/admin');
+    }
+
+    if (user.role === "TECHNICIAN") {
+        redirect("/provider");
+    }
+
+    if (user.role === "CUSTOMER") {
+        redirect("/dashboard")
+    }
+
     return {
         success: true,
-        message: result.message || "Login successful"
-    }
+        message: result.message || "Login successful",
+    };
 }
 
 export const registerAction = async (state: { success: boolean, message: string }, formData: FormData) => {
@@ -66,4 +116,27 @@ export const registerAction = async (state: { success: boolean, message: string 
         success: true,
         message: result.message || "Registration successful"
     }
+}
+
+export const logoutAction = async () => {
+    const cookieStore = await cookies();
+
+    const accessToken = await cookieStore.get('accessToken')?.value;
+
+    if (accessToken) {
+        await fetch(`${process.env.BACKEND_API_URL}/api/v1/auth/logout`,
+            {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            }
+        )
+    }
+
+    cookieStore.delete("accessToken");
+    cookieStore.delete("refreshToken");
+    cookieStore.delete("userRole")
+
+    redirect("/login")
 }

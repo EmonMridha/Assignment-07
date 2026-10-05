@@ -12,6 +12,7 @@ const LoginForm = () => {
         success: false,
         message: ""
     })// returned thing by loginAction will be stored in state so that we can use this later. when the loginAction will be running the isPending will be true.
+    console.log("state", state)
 
     return (
         <form action={formAction} className="space-y-4">
