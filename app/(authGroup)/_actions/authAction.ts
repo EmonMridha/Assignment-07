@@ -89,6 +89,17 @@ export const registerAction = async (state: { success: boolean, message: string 
     const email = formData.get('email');
     const password = formData.get('password')
 
+    if (
+        typeof name !== "string" ||
+        typeof email !== "string" ||
+        typeof password !== "string"
+    ) {
+        return {
+            success: false,
+            message: "Invalid form data"
+        };
+    }
+
     const payload = {
         name,
         email,
