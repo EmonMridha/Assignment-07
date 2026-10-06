@@ -6,8 +6,8 @@ import { redirect } from "next/navigation";
 
 export const loginAction = async (state: { success: boolean, message: string }, formData: FormData) => {
 
-    const email = formData.get('email');
-    const password = formData.get('password')
+    const email = formData.get('userEmail');
+    const password = formData.get('userPassword')
 
     const payload = {
         email,

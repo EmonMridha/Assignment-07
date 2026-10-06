@@ -21,11 +21,39 @@ const LoginForm = () => {
         resolver: zodResolver(loginSchema)
     })
 
+    // form input field's registered values will be be set in data object
     const onSubmit = (data: LoginFormData) => {
+        const formData = new FormData(); // creating a empty FormData object
+
+        formData.append("userEmail", data.email);
+        formData.append("userPassword", data.password);
+
+        formAction(formData);
+    };
+
+    const handleAdminDemoLogin = () => {
         const formData = new FormData();
 
-        formData.append("email", data.email);
-        formData.append("password", data.password);
+        formData.append("userEmail", "michael@gmail.com");
+        formData.append("userPassword", "123456");
+
+        formAction(formData);
+    };
+
+    const handleCustomerLogin = () => {
+        const formData = new FormData();
+
+        formData.append("userEmail", "customer@gmail.com");
+        formData.append("userPassword", "123456");
+
+        formAction(formData);
+    };
+
+    const handleTechnicianLogin = () => {
+        const formData = new FormData();
+
+        formData.append("userEmail", "technician@gmail.com");
+        formData.append("userPassword", "123456");
 
         formAction(formData);
     };
@@ -58,7 +86,22 @@ const LoginForm = () => {
                     </p>
                 )}
                 <Button type="submit" disabled={isPending}>
-                    {isPending ? "Logging in..." : "Login"}
+                    {isPending ? "Logging in..." : " Login"}
+                </Button>
+
+                {/* Admin button */}
+                <Button type="button" className="bg-purple-700" disabled={isPending} onClick={handleAdminDemoLogin}>
+                    {isPending ? "Logging in..." : "Login as Admin"}
+                </Button>
+
+                {/* Customer Button */}
+                <Button type="button" className="bg-blue-700" disabled={isPending} onClick={handleCustomerLogin}>
+                    {isPending ? "Logging in..." : "Login as Customer"}
+                </Button>
+
+                {/* Technician Button */}
+                <Button type="button" className="bg-green-700" disabled={isPending} onClick={handleTechnicianLogin}>
+                    {isPending ? "Logging in..." : "Login as Technician"}
                 </Button>
 
                 <p>

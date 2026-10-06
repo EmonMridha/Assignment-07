@@ -10,7 +10,7 @@ const RegisterPage = () => {
                     <h1 className='text-3xl font-bold'>
                         Welcome Back to <br /><p className='text-amber-300'> PowerWatch</p>
                     </h1>
-                    <p className='text-gray-100'>Enter your credentials to REGISTER</p>
+                    <p className='text-gray-100'><b>REGISTER</b> with your credentials</p>
                     <RegisterForm />
                 </div>
             </div>
