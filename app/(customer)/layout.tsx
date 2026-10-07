@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation';
 import { ReactNode, useState } from 'react';
 
 const navItems = [
+
+  { name: 'Home', href: '/dashboard/' },
   { name: 'Complaints', href: '/dashboard/complaints' },
   { name: 'Outages', href: '/dashboard/outages' },
   { name: 'Payments', href: '/dashboard/payments' },
@@ -20,7 +22,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 
       {/* Mobile top bar */}
       <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-slate-800 text-white flex items-center justify-between px-4 py-3">
-        <h2 className="text-lg font-bold text-sky-400">Power Manager</h2>
+        <Link href="/"> <h2 className="text-lg font-bold text-sky-400">PowerWatch</h2></Link>
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="p-2 rounded hover:bg-slate-700"
@@ -60,9 +62,9 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           md:translate-x-0
         `}
       >
-        <h2 className="text-center text-xl font-bold text-sky-400 mb-5 hidden md:block">
-          Power Manager
-        </h2>
+        <Link href="/"> <h2 className="text-center text-xl font-bold text-sky-400 mb-5 hidden md:block">
+          PowerWatch
+        </h2></Link>
 
         {/* Mobile close spacing */}
         <div className="md:hidden h-14" />
