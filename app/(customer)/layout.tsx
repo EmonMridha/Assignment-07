@@ -8,6 +8,7 @@ const navItems = [
 
   { name: 'Home', href: '/dashboard/' },
   { name: 'Complaints', href: '/dashboard/complaints' },
+  { name: 'Post a Complaint', href: '/dashboard/complaints/create' },
   { name: 'Outages', href: '/dashboard/outages' },
   { name: 'Payments', href: '/dashboard/payments' },
   { name: 'Profile', href: '/dashboard/profile' },

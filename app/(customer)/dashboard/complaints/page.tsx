@@ -163,6 +163,12 @@ const Complaints = async () => {
                     ))}
                 </div>
             )}
+            <Link
+                href="/dashboard/complaints/create"
+                className="rounded-lg bg-green-800 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
+            >
+                + New Complaint
+            </Link>
         </div>
     );
 };
