@@ -70,7 +70,7 @@ export const loginAction = async (state: { success: boolean, message: string }, 
     }
 
     if (user.role === "TECHNICIAN") {
-        redirect("/provider");
+        redirect("/technician");
     }
 
     if (user.role === "CUSTOMER") {
