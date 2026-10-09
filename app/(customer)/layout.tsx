@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode, useState } from 'react';
+import { logoutAction } from '../(authGroup)/_actions/authAction';
 
 const navItems = [
 
@@ -87,6 +88,14 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             </Link>
           );
         })}
+        <form action={logoutAction} className="mx-4 mt-auto">
+          <button
+            type="submit"
+            className="w-full rounded-lg border border-slate-600 px-4 py-2 text-center text-sm text-slate-300 transition hover:bg-slate-700 hover:text-white"
+          >
+            Logout
+          </button>
+        </form>
       </aside>
 
       {/* Main Content */}

@@ -1,6 +1,7 @@
 'use client';
 
 
+import { logoutAction } from '@/app/(authGroup)/_actions/authAction';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode, useState } from 'react';
@@ -82,6 +83,15 @@ export default function TechnicianLayout({ children }: { children: ReactNode }) 
                 >
                     + Create Outage
                 </Link>
+
+                <form action={logoutAction} className="mx-4 mt-auto pt-4">
+                    <button
+                        type="submit"
+                        className="w-full rounded-lg border border-slate-600 px-4 py-2 text-center text-sm text-slate-300 transition hover:bg-slate-700 hover:text-white"
+                    >
+                        Logout
+                    </button>
+                </form>
             </aside>
 
             <main className="flex-1 overflow-x-hidden p-4 pt-20 md:p-8 md:pt-8">
