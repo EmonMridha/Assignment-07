@@ -10,7 +10,8 @@ const navItems = [
   { name: 'Complaints', href: '/dashboard/complaints' },
   { name: 'Post a Complaint', href: '/dashboard/complaints/create' },
   { name: 'Outages', href: '/dashboard/outages' },
-  { name: 'Payments', href: '/dashboard/payments' },
+  { name: 'Pay Bill', href: '/dashboard/payments/pay' },
+  { name: 'Verify Payment', href: '/dashboard/payments/verify' },
   { name: 'Profile', href: '/dashboard/profile' },
 ];
 
