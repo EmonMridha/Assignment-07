@@ -1,10 +1,12 @@
 'use client';
 
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode, useState } from 'react';
 
 const navItems = [
+    { name: 'Home', href: '/technician' },
     { name: 'Outages', href: '/technician/outages' },
     { name: 'Complaints', href: '/technician/complaints' },
     { name: 'Profile', href: '/technician/profile' },
@@ -17,7 +19,9 @@ export default function TechnicianLayout({ children }: { children: ReactNode }) 
     return (
         <div className="flex min-h-screen bg-gray-100">
             <div className="fixed inset-x-0 top-0 z-40 flex items-center justify-between bg-slate-800 px-4 py-3 text-white md:hidden">
-                <h2 className="text-lg font-bold text-sky-400">Technician Dashboard</h2>
+                <h2 className='cursor-pointer'><Link className="text-lg pointer-cursor font-bold text-sky-400" href="/">
+                    Technician Dashboard
+                </Link></h2>
                 <button
                     onClick={() => setIsOpen(!isOpen)}
                     className="rounded p-2 hover:bg-slate-700"
