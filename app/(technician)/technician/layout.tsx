@@ -70,6 +70,14 @@ export default function TechnicianLayout({ children }: { children: ReactNode }) 
                         </Link>
                     );
                 })}
+
+                <Link
+                    href="/technician/outages/create"
+                    onClick={() => setIsOpen(false)}
+                    className="mx-4 mt-4 rounded-lg bg-sky-500 px-4 py-2 text-center text-sm font-medium text-white transition hover:bg-sky-600"
+                >
+                    + Create Outage
+                </Link>
             </aside>
 
             <main className="flex-1 overflow-x-hidden p-4 pt-20 md:p-8 md:pt-8">
