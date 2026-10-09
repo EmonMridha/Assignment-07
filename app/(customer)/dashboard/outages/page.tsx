@@ -1,6 +1,8 @@
 import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 import { Outage } from "@/types/outage";
+
 import { cookies } from "next/headers";
+import Link from "next/link";
 
 const DashboardPage = async () => {
     const user = await getCurrentUser();
@@ -60,6 +62,13 @@ const DashboardPage = async () => {
                                     {outage.priority}
                                 </span>
                             </div>
+
+                            <Link
+                                href={`/dashboard/outages/${outage.id}`}
+                                className="mt-3 inline-block rounded-lg bg-slate-800 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-slate-700"
+                            >
+                                View Details
+                            </Link>
                         </div>
                     ))}
                 </div>
